@@ -3,7 +3,7 @@ import axios from "axios";
 
 // Clean base URL handling
 const baseURL =
-  (import.meta.env.VITE_API_URL || "http://localhost:8000/api").replace(/\/+$/, "");
+  (import.meta.env.REACT_APP_API_URL || "http://localhost:8000/api").replace(/\/+$/, "");
 
 // Create axios instance
 const api = axios.create({
