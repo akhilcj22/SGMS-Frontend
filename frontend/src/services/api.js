@@ -35,39 +35,28 @@
 // api.js
 import axios from "axios";
 
-// --------------------------------------------
-// Base URL handling (CRA uses process.env.REACT_APP...)
-// --------------------------------------------
+// Load backend URL (CRA environment variable)
+const RAW_URL = process.env.REACT_APP_API_URL || "http://127.0.0.1:8000";
 
-// eslint-disable-next-line no-undef
-const RAW_URL = process.env.REACT_APP_API_URL || "http://localhost:8000";
-const CLEAN_URL = RAW_URL.replace(/\/+$/, ""); // remove trailing slash
+// Remove trailing slash
+const CLEAN_URL = RAW_URL.replace(/\/+$/, "");
 
-// Create axios instance
+// Final axios instance
 const api = axios.create({
-  baseURL: `${CLEAN_URL}/api/`, // automatically inserts /api/
+  baseURL: `${CLEAN_URL}/api/`,
 });
 
-// --------------------------------------------
-// Attach JWT token automatically
-// --------------------------------------------
+// Attach JWT token
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem("accessToken");
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
-  }
+  if (token) config.headers.Authorization = `Bearer ${token}`;
   return config;
 });
 
-// --------------------------------------------
-// Allow manual update of token
-// --------------------------------------------
+// Allow manual update
 export function setAuthToken(token) {
-  if (token) {
-    api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-  } else {
-    delete api.defaults.headers.common["Authorization"];
-  }
+  if (token) api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+  else delete api.defaults.headers.common["Authorization"];
 }
 
 export default api;
