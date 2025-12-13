@@ -23,7 +23,7 @@ function Profile() {
 
   const [message, setMessage] = useState("");
 
-  // ---------------- FILE HANDLING ----------------
+
   const handleFile = (e) => {
     const f = e.target.files[0];
     if (!f) return;
@@ -38,7 +38,7 @@ function Profile() {
     }
 
     setPreview(URL.createObjectURL(f));
-    // auto-upload on selection
+
     uploadSelectedFile(f);
   };
 
@@ -64,7 +64,6 @@ function Profile() {
     }
   };
 
-  // --------------- PROFILE UPDATE ----------------
   const handleChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
@@ -81,7 +80,6 @@ function Profile() {
     }
   };
 
-  // --------------- CHANGE PASSWORD ----------------
   const changePassword = async (e) => {
     e.preventDefault();
 

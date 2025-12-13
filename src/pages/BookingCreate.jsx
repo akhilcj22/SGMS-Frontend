@@ -4,10 +4,10 @@ import { useState, useEffect, useRef } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import api from "../services/api";
 
-// Leaflet base library
+
 import L from "leaflet";
 
-// Fix leaflet icons
+
 import iconUrl from "leaflet/dist/images/marker-icon.png";
 import iconRetinaUrl from "leaflet/dist/images/marker-icon-2x.png";
 import shadowUrl from "leaflet/dist/images/marker-shadow.png";
@@ -19,14 +19,12 @@ L.Icon.Default.mergeOptions({
   shadowUrl,
 });
 
-// ----------------------
-// REACT 19 COMPATIBLE LEAFLET MAP COMPONENT
-// ----------------------
+
 function LeafletMap({ center, zoom, userLocation, centers, setSelectedCenter }) {
   const mapRef = useRef(null);
 
   useEffect(() => {
-    // Initialize map only once
+
     if (!mapRef.current) {
       mapRef.current = L.map("map-container").setView(center, zoom);
 
@@ -35,14 +33,13 @@ function LeafletMap({ center, zoom, userLocation, centers, setSelectedCenter }) 
       }).addTo(mapRef.current);
     }
 
-    // Add user marker
     if (userLocation) {
       L.marker([userLocation.lat, userLocation.lng])
         .addTo(mapRef.current)
         .bindPopup("You are here");
     }
 
-    // Add center markers
+
     centers.forEach((center) => {
       const marker = L.marker([
         parseFloat(center.latitude),
@@ -71,7 +68,7 @@ function BookingCreate() {
   const [centers, setCenters] = useState([]);
   const [selectedCenter, setSelectedCenter] = useState(null);
   const [userLocation, setUserLocation] = useState(null);
-  const [mapCenter, setMapCenter] = useState({ lat: 28.6139, lng: 77.2090 }); // Default: Delhi
+  const [mapCenter, setMapCenter] = useState({ lat: 11.874477, lng: 75.370369 }); // Default: Kannur
   const [nearestCenter, setNearestCenter] = useState(null);
 
   const [formData, setFormData] = useState({

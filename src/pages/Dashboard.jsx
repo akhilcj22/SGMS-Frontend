@@ -21,7 +21,7 @@ function Dashboard() {
       const res = await api.get("waste/booking/history/");
       setBookings(res.data);
       
-      // Calculate stats
+
       const total = res.data.length;
       const pending = res.data.filter((b) => b.status === "pending" || b.status === "accepted" || b.status === "in_progress").length;
       const completed = res.data.filter((b) => b.status === "completed").length;

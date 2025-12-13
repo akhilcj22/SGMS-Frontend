@@ -27,7 +27,7 @@ function Payment() {
   const handlePayment = async () => {
     if (!booking) return;
 
-    // Check if Razorpay is loaded
+
     if (!window.Razorpay) {
       alert("Payment gateway is not loaded. Please refresh the page and try again.");
       return;
@@ -35,7 +35,7 @@ function Payment() {
 
     setProcessing(true);
     try {
-      // Create payment order
+     
       const paymentRes = await api.post("waste/payment/create/", {
         booking_id: booking.id,
         amount: booking.total_price,
@@ -50,7 +50,7 @@ function Payment() {
         return;
       }
 
-      // Initialize Razorpay
+    
       const options = {
         key: razorpayKeyId,
         amount: amount * 100, // Amount in paise

@@ -5,7 +5,7 @@ import { AuthContext } from "../context/AuthContext";
 function ProtectedRoute({ children }) {
   const { user } = useContext(AuthContext);
 
-  // fallback to localStorage if context not loaded yet
+
   const fallbackUser =
     user ||
     (() => {

@@ -17,12 +17,12 @@ function Welcome() {
   const [submitStatus, setSubmitStatus] = useState({
     state: null,
     message: "",
-  }); // {state: success|error|null, message: string}
+  });
 
   const handleContactChange = (e) =>
     setContact({ ...contact, [e.target.name]: e.target.value });
 
-  // Handle Contact Form Submit
+ 
   const submitContact = async (e) => {
     e.preventDefault();
 
@@ -60,7 +60,7 @@ function Welcome() {
     }
   };
 
-  // Waste Categories Data
+
   const wasteCategories = [
     {
       name: "Bio Waste",

@@ -10,7 +10,7 @@ function Login() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // If already logged in, redirect to welcome page
+
   useEffect(() => {
     if (user || token) {
       navigate("/", { replace: true });
@@ -25,9 +25,9 @@ function Login() {
     setLoading(true);
     setError("");
     try {
-      // pass credentials as an object matching backend expectations
+  
       await login({ email: form.email, password: form.password });
-      navigate("/", { replace: true }); // Redirect to Welcome page
+      navigate("/", { replace: true }); 
     } catch (err) {
       setError("Invalid email or password. Please try again.");
     } finally {

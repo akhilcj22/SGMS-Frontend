@@ -4,7 +4,7 @@ import api from "../services/api";
 export const AuthContext = createContext(null);
 
 export function AuthProvider({ children }) {
-  // Initialize from localStorage so refresh keeps user logged in
+
   const [user, setUser] = useState(() => {
     try {
       const saved = localStorage.getItem("user");
@@ -18,7 +18,7 @@ export function AuthProvider({ children }) {
     localStorage.getItem("accessToken") || null
   );
 
-  // Set axios header when token changes
+
   useEffect(() => {
     if (token) {
       api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
@@ -29,7 +29,7 @@ export function AuthProvider({ children }) {
     }
   }, [token]);
 
-  // Persist user
+
   useEffect(() => {
     if (user) localStorage.setItem("user", JSON.stringify(user));
     else localStorage.removeItem("user");
@@ -40,16 +40,16 @@ export function AuthProvider({ children }) {
     const data = res.data;
 
     if (data.access) {
-      // set token in state and axios headers
+
       setToken(data.access);
       api.defaults.headers.common["Authorization"] = `Bearer ${data.access}`;
 
-      // fetch current user profile
+
       try {
         const me = await api.get("auth/me/");
         setUser(me.data);
       } catch (err) {
-        // If fetching profile fails, leave user as null
+
         console.error("Failed to fetch user profile after login:", err);
       }
     }

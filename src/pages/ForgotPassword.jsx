@@ -19,8 +19,7 @@ function ForgotPassword() {
     setMessage({ type: null, text: "" });
 
     try {
-      // TODO: Replace with actual backend endpoint when available
-      // For now, this is a placeholder
+    
       const response = await api.post("auth/forgot_password/", { email });
       
       setMessage({
@@ -31,7 +30,7 @@ function ForgotPassword() {
     } catch (err) {
       console.error("Forgot password error:", err);
       
-      // If endpoint doesn't exist yet, show a helpful message
+
       if (err.response?.status === 404) {
         setMessage({
           type: "info",
